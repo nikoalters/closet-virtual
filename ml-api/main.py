@@ -4,6 +4,7 @@ import rembg
 import io
 
 app = FastAPI(title="NicoSotoDev IA API")
+session = rembg.new_session("u2netp")
 
 @app.get("/")
 def read_root():
@@ -16,8 +17,7 @@ async def remove_background(file: UploadFile = File(...)):
 
     try:
         input_image = await file.read()
-        # Aquí procesamos la imagen con rembg
-        output_image = rembg.remove(input_image)
+        output_image = rembg.remove(input_image, session=session)
         return Response(content=output_image, media_type="image/png")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
