@@ -1,7 +1,8 @@
+import os
+import uvicorn
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import Response
 import rembg
-import io
 
 app = FastAPI(title="NicoSotoDev IA API")
 session = rembg.new_session("u2netp")
@@ -21,3 +22,8 @@ async def remove_background(file: UploadFile = File(...)):
         return Response(content=output_image, media_type="image/png")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error: {str(e)}")
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 7860))
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
