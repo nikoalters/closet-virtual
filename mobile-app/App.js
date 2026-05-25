@@ -127,7 +127,7 @@ export default function App() {
     });
 
     try {
-      const response = await fetch('https://zsaxx-186-11-49-189.run.pinggy-free.link/remove-background', {
+      const response = await fetch('https://closet-virtual.onrender.com/remove-background', {
         method: 'POST',
         body: formData,
         headers: {
